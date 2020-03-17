@@ -1,16 +1,27 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import Person from "./Person/Person";
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import Person from './Person/Person'
 
 class App extends Component {
   state = {
     persons: [
-      { name: "Max", age: 30 },
-      { name: "Mane", age: 25 },
-      { name: "John", age: 32 }
+      { name: 'Max', age: 30 },
+      { name: 'Mane', age: 25 },
+      { name: 'John', age: 32 }
     ]
-  };
+  }
+
+  switchNameHandler = () => {
+    this.setState({
+      persons: [
+        { name: 'Maximilian', age: 35 },
+        { name: 'Mane', age: 25 },
+        { name: 'John', age: 32 }
+      ]
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -18,6 +29,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React...</h1>
         </header>
+        <button onClick={this.switchNameHandler}>Change Name</button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
@@ -28,17 +40,16 @@ class App extends Component {
         />
         <Person
           name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-        >
+          age={this.state.persons[1].age}>
           My Hobbies: Trekking
         </Person>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
       </div>
-    );
+    )
     // return React.createElement('div', null, 'h1', 'Hello world!!!');
   }
 }
 
-export default App;
+export default App
