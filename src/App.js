@@ -4,6 +4,13 @@ import "./App.css";
 import Person from "./Person/Person";
 
 class App extends Component {
+  state = {
+    persons: [
+      { name: "Max", age: 30 },
+      { name: "Mane", age: 25 },
+      { name: "John", age: 32 }
+    ]
+  };
   render() {
     return (
       <div className="App">
@@ -11,9 +18,18 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React...</h1>
         </header>
-        <Person name="Max" age="30" />
-        <Person name="Mane" age="25" />
-        <Person name="John" age="32">
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+        />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+        />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+        >
           My Hobbies: Trekking
         </Person>
         <p className="App-intro">
