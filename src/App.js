@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Person from "./Person/Person";
+import Radium from "radium";
 
 class App extends Component {
   state = {
@@ -46,17 +46,27 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: "white",
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer",
-      marginTop: "15px"
+      marginTop: "15px",
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black"
+      }
     };
 
     let persons = null;
 
     if (this.state.showPersons) {
+      style.backgroundColor = "red";
+      style[":hover"] = {
+        backgroundColor: "#F56",
+        color: "black"
+      };
       persons = (
         <div>
           {this.state.persons.map((p, i) => {
@@ -76,12 +86,15 @@ class App extends Component {
       );
     }
 
+    let classes = [];
+
+    if (this.state.persons.length <= 2) classes.push("red");
+    if (this.state.persons.length <= 1) classes.push("bold");
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React...</h1>
-        </header>
+        <h1>Hello World!</h1>
+        <p className={classes.join(" ")}>Persons</p>
         <button style={style} onClick={this.togglePersonsHandler}>
           Toggle Persons
         </button>
@@ -91,4 +104,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
