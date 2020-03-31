@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import classes from "./App.css";
@@ -24,7 +25,10 @@ class App extends Component {
     const i = this.state.persons.findIndex(p => p.id === id);
     if (i < 0) return;
     persons[i].name = event.target.value;
-    this.setState({ persons: persons });
+    //for cases where old state is needed
+    this.setState((prevState, props) => {
+      return { persons: persons };
+    });
   };
 
   deleteHandler = index => {
