@@ -1,16 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 
 // import Persons from "../components/Persons/Persons";
 // import Cockpit from "../components/Cockpit/Cockpit";
 // import classes from "./App.css";
 // import AuthContext from "../context/auth-context";
 import NavBar from "../components/NavBar/NavBar";
-import { useAuth0 } from "../react-auth0-spa";
 
 // New - import the React Router components, and the Profile page component
 import { Router, Route, Switch } from "react-router-dom";
 import Profile from "../components/Profile/Profile";
 import history from "../utils/history";
+import PrivateRoute from "../hoc/PrivateRoute";
+import ExternalApi from "../views/ExternalApi";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         </header>
         <Switch>
           <Route path="/" exact />
-          <Route path="/profile" component={Profile} />
+          <PrivateRoute path="/external-api" component={ExternalApi} />
+          <PrivateRoute path="/profile" component={Profile} />
         </Switch>
       </Router>
     </div>

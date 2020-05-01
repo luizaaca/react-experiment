@@ -1,4 +1,5 @@
 {
   "domain": "luizaaca.auth0.com",
-  "clientId": "4fOHGiu2URTu7cu0BWbo2oyNSooWPjQw"
+  "clientId": "4fOHGiu2URTu7cu0BWbo2oyNSooWPjQw",
+  "audience": "https://api.mysite.com"
 }
