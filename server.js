@@ -30,6 +30,11 @@ const checkJwt = jwt({
   algorithm: ["RS256"],
 });
 
+app.get("/api/SAML/Consume", (req, res) => {
+  console.log(req);
+  res.send({ msg: "ok" });
+});
+
 // Define an endpoint that must be called with an access token
 app.get("/api/external", checkJwt, (req, res) => {
   res.send({

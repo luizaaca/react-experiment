@@ -9,6 +9,7 @@ import NavBar from "../components/NavBar/NavBar";
 // New - import the React Router components, and the Profile page component
 import { Router, Route, Switch } from "react-router-dom";
 import Profile from "../components/Profile/Profile";
+import Login from "../components/Login";
 import history from "../utils/history";
 import PrivateRoute from "../hoc/PrivateRoute";
 import ExternalApi from "../views/ExternalApi";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" exact />
           <PrivateRoute path="/external-api" component={ExternalApi} />
           <PrivateRoute path="/profile" component={Profile} />
+          <Route path="/login" component={Login} />
         </Switch>
       </Router>
     </div>
