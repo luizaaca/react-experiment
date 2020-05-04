@@ -1,17 +1,17 @@
 // src/views/ExternalApi.js
 
 import React, { useState } from "react";
-import { useAuth0 } from "../react-auth0-spa";
 
 const ExternalApi = () => {
   const [showResult, setShowResult] = useState(false);
   const [apiMessage, setApiMessage] = useState("");
-  const { getTokenSilently } = useAuth0();
+
+  const authResult = new URLSearchParams(window.location.search);
+  const token = authResult.get("token");
 
   const callApi = async () => {
     try {
-      const token = await getTokenSilently();
-      const response = await fetch("http://localhost:3002/api/external", {
+      const response = await fetch("https://localhost:44353/api/dados", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -21,15 +21,18 @@ const ExternalApi = () => {
       setShowResult(true);
       setApiMessage(responseData);
     } catch (error) {
-      console.error("Err:" + error);
+      console.log(error);
+      setShowResult(true);
+      setApiMessage("Err:" + error);
     }
   };
 
   return (
     <React.Fragment>
-      <h1>External API</h1>
-      <button onClick={callApi}>Ping API</button>
+      <h1>API Data</h1>
+      <button onClick={callApi}>Get</button>
       {showResult && <code>{JSON.stringify(apiMessage, null, 2)}</code>}
+      <p>{token}</p>
     </React.Fragment>
   );
 };
